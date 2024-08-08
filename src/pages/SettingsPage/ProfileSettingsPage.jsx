@@ -49,7 +49,7 @@ export default function AccessSettingsPage() {
 
   const handleChangeAccount = () => {
     setLocalUser(null)
-    navigate("/login")
+    navigate("/")
     window.location.reload()
   }
 
