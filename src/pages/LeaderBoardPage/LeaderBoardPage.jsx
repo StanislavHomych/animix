@@ -9,6 +9,7 @@ import {
   LeaderBoardHeadingWrap,
   LeaderBoard,
 } from "./LeaderBoardStyled"
+import { Helmet } from "react-helmet"
 
 export default function LeaderBoardPage() {
   const dispatch = useDispatch()
@@ -37,6 +38,9 @@ export default function LeaderBoardPage() {
 
   return (
     <LeaderBoard>
+      <Helmet>
+        <title>Leaderboard</title>
+      </Helmet>
       <LeaderBoardHeadingWrap>
         <HeadingSecondary>Leader board</HeadingSecondary>
         <RegularText>Top by online</RegularText>

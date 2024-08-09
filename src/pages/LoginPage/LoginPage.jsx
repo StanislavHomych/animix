@@ -17,6 +17,7 @@ import {
 import Logo from "../../components/Logo"
 import Loader from "../../ui/Loader"
 import Error from "../../ui/Error"
+import { Helmet } from "react-helmet"
 
 const backgroundUrl =
   "https://anime-bannerpics.s3.eu-north-1.amazonaws.com/background.jpg"
@@ -52,6 +53,9 @@ export default function LoginPage() {
 
   return (
     <LoginContainer>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <BackgroundContainer>
         <StyledBackgroundImg src={backgroundUrl} alt="background" />
       </BackgroundContainer>

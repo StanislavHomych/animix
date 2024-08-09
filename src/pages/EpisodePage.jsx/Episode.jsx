@@ -17,6 +17,7 @@ import {
   EpisodesControll,
   EpisodesWrap,
 } from "./episodeStyled"
+import { Helmet } from "react-helmet"
 
 const Episode = () => {
   const animeList = useSelector((state) => state.anime.listOfAnime)
@@ -61,6 +62,9 @@ const Episode = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`Animix - ${currentAnime.name}`}</title>
+      </Helmet>
       <VideoPlayer
         key={currentAnime.listOfEpisodes[season].episodes[episodeIndex].link} // Add key to force re-render
         videoUrl={

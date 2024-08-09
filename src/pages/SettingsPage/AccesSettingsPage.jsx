@@ -13,6 +13,7 @@ import {
   TextInputs,
 } from "./accesSettingsPageStyles"
 import Loader from "../../ui/Loader"
+import { Helmet } from "react-helmet"
 
 const ProfileSettingsPage = () => {
   const dispatch = useDispatch()
@@ -110,6 +111,9 @@ const ProfileSettingsPage = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Acces Settings</title>
+      </Helmet>
       <Form onSubmit={handleSubmit}>
         <FileInputs>
           <label>

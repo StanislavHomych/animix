@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom"
 import { CollectionContext } from "../../features/Hooks.js/CollectionContext"
 import { useState } from "react"
 import { theme } from "../../styled/theme"
+import { Helmet } from "react-helmet"
 
 import {
   MyCollectionWrap,
@@ -16,6 +17,9 @@ export default function MyCollectionPage() {
 
   return (
     <MyCollectionWrap>
+      <Helmet>
+        <title>My collection</title>
+      </Helmet>
       <HeadingSecondary>Collections</HeadingSecondary>
       <MyCollectionButtonsWrap>
         <StyledNavLink to="watched">

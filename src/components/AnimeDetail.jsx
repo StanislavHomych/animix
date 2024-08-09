@@ -28,6 +28,7 @@ import EpisodeNumber from "./EpisodeNumber"
 import Aside from "./Aside"
 import Loader from "../ui/Loader"
 import { PreloaderImage } from "./../pages/WelcomePage/bannerMain/BannerMainStyled"
+import { Helmet } from "react-helmet"
 
 export default function AnimeDetail() {
   const dispatch = useDispatch()
@@ -103,6 +104,9 @@ export default function AnimeDetail() {
 
   return (
     <div>
+      <Helmet>
+        <title>{`Animix - ${name}`}</title>
+      </Helmet>
       <AnimeDetailWrapper>
         <AnimeDetailInnerWrapper>
           <AnimeTileWrap>

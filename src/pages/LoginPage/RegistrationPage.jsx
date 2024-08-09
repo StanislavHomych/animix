@@ -16,6 +16,7 @@ import { ButtonMain } from "../../styled/Buttons"
 import { theme } from "../../styled/theme"
 import useLocalStorage from "./../../features/Hooks.js/useLocalStore"
 import Loader from "../../ui/Loader"
+import { Helmet } from "react-helmet"
 
 const backgroundUrl =
   "https://anime-bannerpics.s3.eu-north-1.amazonaws.com/background.jpg"
@@ -56,6 +57,9 @@ export default function RegistrationPage() {
 
   return (
     <LoginContainer>
+      <Helmet>
+        <title>Registrtion</title>
+      </Helmet>
       <BackgroundContainer>
         <StyledBackgroundImg src={backgroundUrl} alt="Background" />
       </BackgroundContainer>

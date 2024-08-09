@@ -2,12 +2,16 @@ import BannerMain from "./bannerMain/BannerMain"
 import RecentlyWatched from "./recentlyWatched/RecentlyWatched"
 import Rubrick from "./rubrick/Rubrick"
 import useLocalStorage from "../../features/Hooks.js/useLocalStore"
+import { Helmet } from "react-helmet"
 
 export default function WelcomePage() {
   const [localUser] = useLocalStorage("user", null) // eslint-disable-line no-unused-vars
 
   return (
     <div>
+      <Helmet>
+        <title>Animix - home</title>
+      </Helmet>
       <BannerMain />
       {localUser &&
         localUser.recentlyWatched &&

@@ -11,6 +11,7 @@ import {
   Input,
 } from "./profileSettingsPageStyled"
 import useLocalStorage from "../../features/Hooks.js/useLocalStore"
+import { Helmet } from "react-helmet"
 
 export default function AccessSettingsPage() {
   const [isPasswordFormVisible, setIsPasswordFormVisible] = useState(false)
@@ -55,6 +56,9 @@ export default function AccessSettingsPage() {
 
   return (
     <SettingsInnerWrapper>
+      <Helmet>
+        <title>Profile settings</title>
+      </Helmet>
       <HeadingSecondary margin="0">Profile</HeadingSecondary>
       <RegularText>Here you can control the access of your account</RegularText>
       <div style={{ display: "flex", gap: "10px" }}>
