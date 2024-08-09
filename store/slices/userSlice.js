@@ -1,383 +1,355 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 // Регістрація користувача
 export const registerUser = createAsyncThunk(
-  'user/registerUser',
+  "user/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        'https://animixserver.onrender.com/register',
+        "https://keen-cactus-thrill.glitch.me/register",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(userData),
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 // Оновлення колекції користувача
 export const updateUserCollection = createAsyncThunk(
-  'user/updateUserCollection',
+  "user/updateUserCollection",
   async (
     { userId, collectionType, movieId, season, episode },
     { rejectWithValue }
   ) => {
     try {
       const response = await fetch(
-        `https://animixserver.onrender.com/users/${userId}/updateCollection`,
+        `https://keen-cactus-thrill.glitch.me/users/${userId}/updateCollection`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ collectionType, movieId, season, episode }),
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 // Оновлення масиву recentlyWatched
 export const updateRecentlyWatched = createAsyncThunk(
-  'user/updateRecentlyWatched',
+  "user/updateRecentlyWatched",
   async ({ userId, movieId, season, episode }, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `https://animixserver.onrender.com/users/${userId}/updateRecentlyWatched`,
+        `https://keen-cactus-thrill.glitch.me/users/${userId}/updateRecentlyWatched`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ movieId, season, episode }),
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 // Фетчення всіх користувачів
 export const fetchUsers = createAsyncThunk(
-  'user/fetchUsers',
+  "user/fetchUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://animixserver.onrender.com/users');
+      const response = await fetch("https://keen-cactus-thrill.glitch.me/users")
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 // Додавання коментаря користувача
 export const addCommentToUser = createAsyncThunk(
-  'user/addCommentToUser',
+  "user/addCommentToUser",
   async (
     { userId, animeId, reviewComment, rating, cover, date },
     { rejectWithValue }
   ) => {
     try {
       const response = await fetch(
-        `https://animixserver.onrender.com/users/${userId}/addComment`,
+        `https://keen-cactus-thrill.glitch.me/users/${userId}/addComment`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ animeId, reviewComment, rating, cover, date }),
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
-
-// Оновлення профілю користувача
-// export const updateUserProfile = createAsyncThunk(
-//   "user/updateUserProfile",
-//   async (profileData, { rejectWithValue }) => {
-//     try {
-//       console.log(() => {
-//         for (let [key, value] of profileData.entries()) {
-//           console.log(key, value)
-//         }
-//       })
-//       const response = await fetch("http://localhost:3000/upload/profile", {
-//         method: "POST",
-//         body: profileData,
-//       })
-
-//       if (!response.ok) {
-//         const errorData = await response.json()
-//         return rejectWithValue(errorData.message || "Failed to update profile")
-//       }
-
-//       const data = await response.json()
-//       return data.user // Повертаємо тільки дані користувача
-//     } catch (error) {
-//       return rejectWithValue({ message: error.message })
-//     }
-//   }
-// )
+)
 
 export const updateUserProfile = createAsyncThunk(
-  'user/updateUserProfile',
+  "user/updateUserProfile",
   async (profileData, { rejectWithValue }) => {
     try {
       // Логування даних FormData
       for (let [key, value] of profileData.entries()) {
-        console.log(key, value);
+        console.log(key, value)
       }
 
       const response = await fetch(
-        'https://animixserver.onrender.com/profile',
+        "https://keen-cactus-thrill.glitch.me/profile",
         {
-          method: 'POST',
+          method: "POST",
           body: profileData,
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message || 'Failed to update profile');
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message || "Failed to update profile")
       }
 
-      const data = await response.json();
-      return data.user; // Повертаємо тільки дані користувача
+      const data = await response.json()
+      return data.user // Повертаємо тільки дані користувача
     } catch (error) {
-      return rejectWithValue({ message: error.message });
+      return rejectWithValue({ message: error.message })
     }
   }
-);
+)
 
 export const changePassword = createAsyncThunk(
-  'user/changePassword',
+  "user/changePassword",
   async ({ userId, oldPassword, newPassword }, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `https://animixserver.onrender.com/users/${userId}/changePassword`,
+        `https://keen-cactus-thrill.glitch.me/users/${userId}/changePassword`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ oldPassword, newPassword }),
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 // Завантаження аватара користувача
 export const uploadAvatar = createAsyncThunk(
-  'user/uploadAvatar',
+  "user/uploadAvatar",
   async ({ userId, avatarFile }, { rejectWithValue }) => {
-    const formData = new FormData();
-    formData.append('avatar', avatarFile);
+    const formData = new FormData()
+    formData.append("avatar", avatarFile)
 
     try {
       const response = await fetch(
-        `https://animixserver.onrender.com/users/${userId}/uploadAvatar`,
+        `https://keen-cactus-thrill.glitch.me/users/${userId}/uploadAvatar`,
         {
-          method: 'POST',
+          method: "POST",
           body: formData,
         }
-      );
+      )
 
       if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData.message);
+        const errorData = await response.json()
+        return rejectWithValue(errorData.message)
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
     user: null,
-    users: [], // Додано для зберігання всіх користувачів
+    users: [],
     error: null,
     loading: false,
   },
   reducers: {
     clearError: (state) => {
-      state.error = null;
+      state.error = null
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
+        state.loading = false
+        state.user = action.payload
       })
       .addCase(registerUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(updateRecentlyWatched.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(updateRecentlyWatched.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = false
         if (state.user) {
-          state.user.recentlyWatched = action.payload.recentlyWatched;
+          state.user.recentlyWatched = action.payload.recentlyWatched
         }
       })
       .addCase(updateRecentlyWatched.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(fetchUsers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = action.payload;
+        state.loading = false
+        state.users = action.payload
       })
       .addCase(fetchUsers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(updateUserCollection.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(updateUserCollection.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = false
         if (state.user) {
-          state.user.userCollection = action.payload.userCollection;
+          state.user.userCollection = action.payload.userCollection
         }
       })
       .addCase(updateUserCollection.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(addCommentToUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(addCommentToUser.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = false
         if (state.user) {
-          state.user.comments = action.payload.comments;
+          state.user.comments = action.payload.comments
         }
       })
       .addCase(addCommentToUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(changePassword.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(changePassword.fulfilled, (state) => {
-        state.loading = false;
+        state.loading = false
       })
       .addCase(changePassword.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(updateUserProfile.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
+        state.loading = false
+        state.user = action.payload
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
       .addCase(uploadAvatar.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(uploadAvatar.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = false
         if (state.user) {
-          state.user.avatar = action.payload.avatar;
+          state.user.avatar = action.payload.avatar
         }
       })
       .addCase(uploadAvatar.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+        state.loading = false
+        state.error = action.payload
+      })
   },
-});
+})
 
-export const { clearError } = userSlice.actions;
+export const { clearError } = userSlice.actions
 
-export default userSlice.reducer;
+export default userSlice.reducer

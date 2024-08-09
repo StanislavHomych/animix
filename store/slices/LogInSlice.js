@@ -7,7 +7,7 @@ export const loginUser = createAsyncThunk(
   'login/loginUser',
   async ({ login, password }, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://animixserver.onrender.com/login', {
+      const response = await fetch('https://keen-cactus-thrill.glitch.me/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
